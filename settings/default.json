@@ -2,7 +2,7 @@
   "version": 1,
   "mode": "web",
   "tunnel": {
-    "enabled": false,
+    "enabled": true,
     "network": "tun",
     "mtu": 1400,
     "tunAddress": "172.19.0.1/30",
@@ -32,6 +32,7 @@
     "enabled": false,
     "profile": "off",
     "zapretDir": "",
+    "iface": "",
     "repeats": 11,
     "fakeTls": "",
     "fakeQuic": "",

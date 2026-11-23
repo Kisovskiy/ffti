@@ -46,7 +46,7 @@ function Get-FftiDpiArgs {
         "--dpi-desync-repeats=$repeats",
         '--dpi-desync-fooling=badseq',
         '--dpi-desync-fake-tls=0x00000000',
-        '--dpi-desync-fake-tls=^!',
+        '--dpi-desync-fake-tls=!',
         '--dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com',
         '--new'
     ) -join ' '
@@ -64,6 +64,16 @@ function Get-FftiDpiArgs {
         $wfTcp += ',1024-65535'
         $wfUdp += ',1024-65535'
     }
+
+    # DPI работает только на физическом адаптере: пакеты туннеля он ломает.
+    $iface = [string]$dpi['iface']
+    if (-not $iface) {
+        $cur = Get-NetAdapter -Physical -ErrorAction SilentlyContinue |
+            Where-Object { $_.Status -eq 'Up' -and $_.InterfaceDescription -notmatch 'Wintun|TAP|sing-tun' } |
+            Select-Object -First 1
+        if ($cur) { $iface = [string]$cur.ifIndex }
+    }
+    if ($iface) { $wfTcp = "--wf-iface=$iface $wfTcp" }
 
     $parts.Add($wfTcp)
     $parts.Add($wfUdp)
@@ -118,10 +128,18 @@ function Start-FftiDpi {
     $spec = Get-FftiDpiArgs
     $argLine = ($spec.Args -join ' ')
     Write-FftiLog "dpi start: $($spec.Exe) $argLine" 'dpi.log'
-    Start-Process -FilePath $spec.Exe -ArgumentList $argLine -WorkingDirectory $spec.Dir -WindowStyle Hidden
-    Start-Sleep -Milliseconds 700
+    $p = Get-FftiPaths
+    $errLog = Join-Path $p.LogDir 'dpi.err.log'
+    $outLog = Join-Path $p.LogDir 'dpi.out.log'
+    Start-Process -FilePath $spec.Exe -ArgumentList $argLine -WorkingDirectory $spec.Dir -WindowStyle Hidden -RedirectStandardError $errLog -RedirectStandardOutput $outLog
+    Start-Sleep -Milliseconds 1200
     $proc = Get-FftiDpiProcess
-    if ($proc) { "DPI включён: profile=$($s['dpi']['profile']), pid=$($proc.ProcessId)" } else { 'DPI не поднялся: смотри logs\dpi.log' }
+    if ($proc) { "DPI включён: profile=$($s['dpi']['profile']), pid=$($proc.ProcessId)" }
+    else {
+        $tail = (Get-Content -LiteralPath $errLog -Raw -ErrorAction SilentlyContinue)
+        if ($tail) { $tail = $tail.Trim() } else { $tail = 'вывода нет' }
+        "DPI не поднялся. Ответ движка: $tail"
+    }
 }
 
 function Stop-FftiDpi {

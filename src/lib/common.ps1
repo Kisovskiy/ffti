@@ -84,13 +84,13 @@ function Read-FftiJson {
 function Get-FftiSettings {
     $p = Get-FftiPaths
     $base = Read-FftiJson (Join-Path $p.SettingsDir 'default.json')
-    $user = Read-FftiJson $p.UserFile
-    if ($user) { $base = Merge-FftiDeep $base $user }
     $modes = Read-FftiJson (Join-Path $p.SettingsDir 'modes.json')
     $modeName = [string]$base['mode']
     if ($modes -and $modes['modes'] -and $modes['modes'].Contains($modeName)) {
         $base = Merge-FftiDeep $base $modes['modes'][$modeName]['patch']
     }
+    $user = Read-FftiJson $p.UserFile
+    if ($user) { $base = Merge-FftiDeep $base $user }
     $base
 }
 

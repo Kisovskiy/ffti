@@ -58,6 +58,9 @@ function New-FftiConfig {
             $srs = Join-Path $p.RulesDir 'geoip-ru.srs'
             if (Test-Path -LiteralPath $srs) { $tun['route_exclude_address_set'] = 'geoip-ru' }
         }
+        # сами прокси не должны попадать в туннель — иначе соединение зацикливается
+        $pxIp = @($proxies | ForEach-Object { $_.Host } | Where-Object { $_ -match '^\d{1,3}(\.\d{1,3}){3}$' } | ForEach-Object { "$_/32" })
+        if ($pxIp.Count -gt 0) { $tun['route_exclude_address'] = $pxIp }
         $inbounds += $tun
     }
     $inbounds += [ordered]@{ type = 'http'; tag = 'http-in'; listen = '127.0.0.1'; listen_port = [int]$t['localHttpPort'] }

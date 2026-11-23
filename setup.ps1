@@ -1,4 +1,4 @@
-#Requires -Version 5.1
+﻿#Requires -Version 5.1
 # FFTI — подготовка: скачать sing-box в bin\, проверить окружение.
 param(
     [string]$SingBoxVersion = '1.14.4',

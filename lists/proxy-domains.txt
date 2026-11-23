@@ -2,6 +2,18 @@
 # Один домен в строке. Совпадение по суффиксу: discord.com покрывает cdn.discord.com.
 # Строки с # игнорируются.
 
+# Telegram
+telegram.org
+telegram.me
+telegram.space
+t.me
+telegra.ph
+tdesktop.com
+telesco.pe
+tg.dev
+web.telegram.org
+api.telegram.org
+
 # Discord
 discord.com
 discord.gg
@@ -76,3 +88,11 @@ tiktokv.com
 tiktokcdn.com
 twitch.tv
 ttvnw.net
+
+# GitHub и dev-сервисы: напрямую нестабильно, через туннель работает
+github.com
+githubusercontent.com
+githubassets.com
+api.github.com
+objects.githubusercontent.com
+codeload.github.com

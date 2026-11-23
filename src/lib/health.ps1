@@ -8,7 +8,9 @@ function Get-FftiProcess {
     if (-not $raw) { return $null }
     $procId = 0
     if (-not [int]::TryParse($raw.Trim(), [ref]$procId)) { return $null }
-    Get-Process -Id $procId -ErrorAction SilentlyContinue
+    $proc = Get-Process -Id $procId -ErrorAction SilentlyContinue
+    if ($proc -and $proc.ProcessName -eq 'sing-box') { return $proc }
+    return $null
 }
 
 function Test-FftiPort {
