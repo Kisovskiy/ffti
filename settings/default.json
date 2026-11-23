@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "mode": "web",
+  "tunnel": {
+    "enabled": false,
+    "network": "tun",
+    "mtu": 1400,
+    "tunAddress": "172.19.0.1/30",
+    "stack": "system",
+    "autoRoute": true,
+    "strictRoute": true,
+    "localHttpPort": 1081,
+    "localSocksPort": 1080,
+    "lanBypass": true,
+    "ruBypass": true
+  },
+  "dns": {
+    "mode": "system",
+    "ru": "77.88.8.8",
+    "global": "9.9.9.9",
+    "strategy": "prefer_ipv4"
+  },
+  "performance": {
+    "tcpFastOpen": true,
+    "sniff": true,
+    "urltestUrl": "https://discord.com",
+    "urltestInterval": "2m",
+    "urltestTolerance": 200,
+    "proxyDns": false
+  },
+  "dpi": {
+    "enabled": false,
+    "profile": "off",
+    "zapretDir": "",
+    "repeats": 11,
+    "fakeTls": "",
+    "fakeQuic": "",
+    "hostlist": "",
+    "ipset": ""
+  },
+  "games": {
+    "robloxAssist": false,
+    "robloxDirect": true,
+    "keepGameTrafficDirect": true,
+    "discordVoice": true
+  },
+  "lists": {
+    "autoRefreshHours": 0,
+    "proxyDomains": "lists/proxy-domains.txt",
+    "proxyIps": "lists/proxy-ips.txt",
+    "gamesDomains": "lists/games-domains.txt",
+    "gamesIps": "lists/games-ips.txt",
+    "robloxDomains": "lists/roblox-domains.txt",
+    "proxies": "lists/proxies.txt"
+  }
+}

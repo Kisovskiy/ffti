@@ -1,0 +1,17 @@
+# Игровые домены и домены Roblox.
+# Ходят НАПРЯМУЮ: так пинг не растёт. Участвуют в «game» и «roblox» режимах.
+
+# Roblox
+roblox.com
+rbxcdn.com
+rbxcloud.com
+robloxlabs.com
+roblox.cn
+
+# Steam / Epic / Battlestate
+steampowered.com
+steamcommunity.com
+steamstatic.com
+epicgames.com
+epicgames.dev
+escapefromtarkov.com

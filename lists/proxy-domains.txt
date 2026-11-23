@@ -1,0 +1,78 @@
+# Домены, которые идут ЧЕРЕЗ туннель.
+# Один домен в строке. Совпадение по суффиксу: discord.com покрывает cdn.discord.com.
+# Строки с # игнорируются.
+
+# Discord
+discord.com
+discord.gg
+discord.co
+discord.dev
+discord.media
+discordapp.com
+discordapp.net
+discordcdn.com
+discord.gift
+discord.gifts
+discord.new
+discord.store
+discord.design
+discordstatus.com
+discord-activities.com
+discordactivities.com
+discordmerch.com
+discordpartygames.com
+discordsays.com
+discordsez.com
+
+# Meta
+instagram.com
+cdninstagram.com
+facebook.com
+fbcdn.net
+fb.com
+fb.me
+messenger.com
+whatsapp.net
+whatsapp.com
+
+# X / Twitter
+x.com
+twitter.com
+t.co
+twimg.com
+
+# OpenAI
+openai.com
+chatgpt.com
+oaistatic.com
+oaiusercontent.com
+sora.com
+
+# Музыка и видео
+spotify.com
+scdn.co
+spotifycdn.com
+soundcloud.com
+sndcdn.com
+deezer.com
+
+# Reddit / Medium / LinkedIn
+reddit.com
+redd.it
+redditmedia.com
+redditstatic.com
+medium.com
+linkedin.com
+licdn.com
+
+# Прочее заблокированное
+protonmail.com
+proton.me
+signal.org
+patreon.com
+pixiv.net
+tiktok.com
+tiktokv.com
+tiktokcdn.com
+twitch.tv
+ttvnw.net

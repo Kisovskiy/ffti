@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "modes": {
+    "web": {
+      "title": "Web",
+      "note": "Браузер и приложения: заблокированное через туннель, YouTube и всё российское напрямую.",
+      "patch": {
+        "dpi": { "enabled": true, "profile": "google" },
+        "performance": { "urltestInterval": "2m", "urltestTolerance": 200 },
+        "games": { "robloxAssist": false, "keepGameTrafficDirect": true }
+      }
+    },
+    "game": {
+      "title": "Game",
+      "note": "Игры: весь игровой трафик напрямую, тоннель только для сайтов и лончеров, DPI для голосового чата.",
+      "patch": {
+        "tunnel": { "mtu": 1420 },
+        "dpi": { "enabled": true, "profile": "games" },
+        "performance": { "urltestInterval": "3m", "urltestTolerance": 300, "sniff": true },
+        "games": { "robloxAssist": true, "keepGameTrafficDirect": true, "discordVoice": true }
+      }
+    },
+    "max": {
+      "title": "Max",
+      "note": "Максимум доступности: широкий DPI-профиль, частый выбор лучшего прокси, всё заблокированное в тоннель.",
+      "patch": {
+        "dpi": { "enabled": true, "profile": "full" },
+        "performance": { "urltestInterval": "1m", "urltestTolerance": 100 },
+        "games": { "robloxAssist": true, "keepGameTrafficDirect": true }
+      }
+    },
+    "roblox": {
+      "title": "Roblox",
+      "note": "Roblox: игровые серверы и CDN напрямую, веб-логин через туннель только если он не открывается.",
+      "patch": {
+        "dpi": { "enabled": false, "profile": "off" },
+        "performance": { "urltestInterval": "3m", "urltestTolerance": 300 },
+        "games": { "robloxAssist": true, "robloxDirect": true, "keepGameTrafficDirect": true }
+      }
+    }
+  }
+}

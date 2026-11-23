@@ -1,0 +1,16 @@
+# бинарники и локальное состояние не коммитим
+bin/*.exe
+bin/*.dll
+bin/*.sys
+zapret/
+logs/
+config.generated.json
+settings/user.json
+rules/*.srs
+
+# мусор
+*.log
+*.tmp
+*.zip
+.vscode/
+.idea/
